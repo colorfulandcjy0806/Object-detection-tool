@@ -2,8 +2,13 @@
 import os
 from PIL import Image
 
+
 def compress(src_path,dst_path,compress_rate=0.5):
     img = Image.open(src_path)
+    imageSize = os.path.getsize(src_path)
+    img_info = imageSize / 1024
+    if (img_info) < 800:
+        return
     w = int(img.size[0]*compress_rate)
     h = int(img.size[1]*compress_rate)
     img_resize = img.resize((w,h))
@@ -17,4 +22,4 @@ if __name__ == "__main__":
     for filename in os.listdir(src_dir):
         img_path = os.path.join(src_dir,filename)
         new_img_path = os.path.join(dst_dir,filename)
-        compress(img_path,new_img_path,0.5)
+        compress(img_path,new_img_path,0.8)
