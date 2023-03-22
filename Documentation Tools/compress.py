@@ -8,7 +8,7 @@ def compress(src_path,dst_path,compress_rate=0.5):
     imageSize = os.path.getsize(src_path)
     img_info = imageSize / 1024
     if (img_info) < 800:
-        return
+        return img
     w = int(img.size[0]*compress_rate)
     h = int(img.size[1]*compress_rate)
     img_resize = img.resize((w,h))
